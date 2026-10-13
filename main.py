@@ -1,22 +1,50 @@
 
-from graph import graph
-from state import ResearchState
+from graph import research_graph
 
-initial_state: ResearchState = {
-    "query": "The impact of AI on education in Nigeria",
-    "plan": [],
-    "findings": [],
-    "report": "",
-    "approved": False,
-}
 
-result = graph.invoke(initial_state)
+def main():
+    default_query = "The impact of AI on education in Nigeria"
+    query = input("What topic do you want to research? ").strip() or default_query
 
-print("\n--- RESEARCH PLAN ---")
-print(result["plan"])
+    initial_state = {
+        "query": query,
+        "plan": [],
+        "findings": [],
+        "analysis": "",
+        "report": "",
+        "approved": False,
+    }
 
-print("\n--- RESEARCH FINDINGS ---")
-print(result["findings"])
+    result = research_graph.invoke(initial_state)
 
-print("\n--- FINAL REPORT ---")
-print(result["report"])
+    print("\n" + "=" * 50)
+    print("RESEARCH PLAN")
+    print("=" * 50)
+
+    for question in result["plan"]:
+        print(question)
+
+    print("\n" + "=" * 50)
+    print("RESEARCH FINDINGS")
+    print("=" * 50)
+
+    for finding in result["findings"]:
+        print(finding)
+
+    print("\n" + "=" * 50)
+    print("RESEARCH ANALYSIS")
+    print("=" * 50)
+
+    print(result["analysis"])
+
+    print("\n" + "=" * 50)
+    print("FINAL RESEARCH REPORT")
+    print("=" * 50)
+
+    print(result["report"])
+
+    print("\nApproved:", result["approved"])
+
+
+if __name__ == "__main__":
+    main()

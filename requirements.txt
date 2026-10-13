@@ -1,6 +1,3 @@
-
-langchain
-langchain-openai
 langgraph
+langchain-openai
 python-dotenv
-tavily-python
